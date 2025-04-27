@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto px-4 py-10">
+        <h2 class="text-3xl font-bold mb-6 text-center">Employee Management System</h2>
+        
+        <div class="flex justify-end mb-4">
+            <a href="/add" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Add Employee</a>
+        </div>
+
+        <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead class="bg-gray-200 text-gray-700">
+                <tr>
+                    <th class="px-6 py-3 text-left">Name</th>
+                    <th class="px-6 py-3 text-left">Email</th>
+                    <th class="px-6 py-3 text-left">Department</th>
+                    <th class="px-6 py-3 text-left">Salary</th>
+                    <th class="px-6 py-3 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="e : ${employees}" class="border-b">
+                    <td class="px-6 py-3" th:text="${e.name}"></td>
+                    <td class="px-6 py-3" th:text="${e.email}"></td>
+                    <td class="px-6 py-3" th:text="${e.department}"></td>
+                    <td class="px-6 py-3" th:text="${e.salary}"></td>
+                    <td class="px-6 py-3 text-center">
+                        <a th:href="@{/edit/{id}(id=${e.id})}" class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600">Edit</a>
+                        <a th:href="@{/delete/{id}(id=${e.id})}" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
